@@ -1,0 +1,55 @@
+body {
+    background-color: mistyrose !important;
+}
+
+.main {
+    height: 40vh;
+    width: 40vh;
+    border: 1px solid mistyrose;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 40px;
+    box-shadow: 5px 5px 5px darkgray;
+    background-color: whitesmoke;
+}
+
+.fa {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
+}
+
+.logo {
+    text-align: center;
+}
+
+.pere {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: larger;
+    font-style: oblique;
+}
+
+.login {
+
+    margin-top: 1rem;
+    text-align: center;
+    background-color: darkgray;
+    border: 1px solid white;
+    border-radius: 25px;
+    box-shadow: 2px 2px 5px black;
+}
+
+.g_logo {
+    height: 3rem;
+    width: 3rem;
+
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}

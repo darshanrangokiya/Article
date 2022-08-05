@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+<body >
+    <%- include('../partials/nav.ejs') %>
+    <div class="container">
+        <div class="row  mt-5">
+            <div class="col-12">
+                <h2 class="text-center text-muted text-capitalize"><%- article.title %></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="mt-4" id="data" style="font-size: larger; letter-spacing: 1px;text-overflow: ellipsis;height: fit-content;width: fit-content;">
+                    <%- article.body %>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 text-end mt-3"><b><%= moment(article).format('Do MMMM YYYY') %></b></div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<html>
+
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <link rel="stylesheet" href="css/style1.css">
+</head>
+<style>
+  a{
+    text-decoration: none;
+  }
+</style>
+<body>
+  <%- include('./partials/nav.ejs') %>
+    <div class="container mt-3">
+      <h3>Welcome,</h3>
+      <div style="font-size: 3vh; font-weight:700;">
+        <img src="https://lh3.googleusercontent.com/a/AATXAJyhTBf1d9_I03vdnOXqc1qBMQV-_xgYIov3cYuT=s96-c" alt=""
+          style="width: 45px; height: 45px" class="rounded-circle" />
+        <%= user.displayname %>
+      </div>
+      <p class="mt-5">Here are your articles:</p>
+      <% if(article.length>0){ %>
+        <table class="table align-middle mb-0 bg-white mt-2">
+          <thead class="bg-light">
+            <tr>
+              <th>Title</th>
+              <th>Created At</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% article.forEach((e)=>{ %>
+              <tr>
+                <td>
+                  <p class="fw-normal mb-1">
+                    <a style="text-decoration: none;" href="/article/individual/<%= e._id %>"><%= e.title %></a>
+                  </p>
+                  <!-- <p class="text-muted mb-0">IT department</p> -->
+                </td>
+                <!-- <td>
+              <span class="badge badge-success rounded-pill d-inline">Active</span>
+            </td> -->
+                <td>
+                  <%= moment(e.createdAt).format('Do MMMM, YYYY, h:mm:ss a')  %>
+                </td>
+                <td>
+                  <%= e.status %>
+                </td>
+                <!-- <td>
+                  <%= e.createdAt %>
+                </td> -->
+                <td >
+                  <a href='/article/edit/<%= e._id %>'> <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                  <a href='/article/delete/<%= e._id %>'><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+              </tr>
+              <% }) %>
+          </tbody>
+        </table>
+        <% }else{ %>
+          <h2>Sorry. You dont have made any article to view!</h2>
+          Add <a href="article/add" style="text-decoration:none;">article</a>
+          <% } %>
+    </div>
+
+</body>
+
+</html>

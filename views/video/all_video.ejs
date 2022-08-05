@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>All videos</title>
+</head>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <% if(vData){ %>
+                <% vData.forEach((ele)=>{ %>
+            <div class="card" style="width: 19rem; margin-left: 10px; margin-top: 5px;">
+                <a href="/video/individual/<%= ele._id %>">
+                    <video class="card-img-top mt-1 vidoe" onmouseover="play()" onmouseleave="pause()" id="" src="./videos/<%= ele.video %>" controls muted style="border-radius: 5px; height: 150px;"></video> 
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title"><%= ele.vname %></h5>
+                  <p class="card-text"><small class="text-muted"><%= moment(ele.date).format('Do MMMM YYYY') %></small></p>
+                </div>
+              </div>
+            <% })}else{ %>
+                <h2>Sorry! No video are available at this moment</h2>
+            <% } %>
+        </div>
+    </div>
+    <script>
+        // const video=document.getElementById('video')
+        // video.addEventListener("mouseover",function(){
+        //     // video.setAttribute('autoplay',true)
+        //     console.log("hrllo");
+        // })
+        // const play=()=>{
+        //     document.getElementsByClassName('vidoe').setAttribute('play',true)
+        // }
+        // const unplay=()=>{
+        //     document.getElementsByClassName('vidoe').setAttribute('play',false)
+        // }
+    </script>
+</body>
+</html>

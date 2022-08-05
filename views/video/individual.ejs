@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        <%= vData.vname %>
+    </title>
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-9">
+                    <div class="card" style="width: 100%;">
+                        <video src="/video/individual/video/<%= vData._id %>" class="cars-video-top" controls autoplay></video>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <% if(aData){ %>
+                        <% aData.forEach((e)=>{ %>
+                            <div class="card mb-2" style="width: 20rem;">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <video src="/videos/<%= e.video %>" style="height:auto; width: 10rem;" class="cars-video-top" 
+                                            controls></video>
+                                    </div>
+                                    <div class="col-6" style="line-height: 1.5;">
+                                        <h6 style="white-space: nowrap; 
+                                        width: 7rem; 
+                                        overflow: hidden; margin-bottom: 0%;
+                                        text-overflow: ellipsis; cursor: pointer;" title="<%= e.vname %>">
+                                            <%= e.vname %>
+                                        </h6>
+                                        <!-- <img src="<%= aData[0].user_info.image %>" class="rounded-pill" style="height: 20px;width:20px;" alt="">--> <span style="font-weight: 600; font-size: small;"><%= aData[0].user_info.displayname %></span> 
+                                        <p>
+                                            <%= moment(e.date).format('Do MMMM YYYY') %>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <% })}else{ %>
+                                <h4>Looking for something! Go back</h4>
+                                <% } %>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

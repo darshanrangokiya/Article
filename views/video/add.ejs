@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Upload video</title>
+    <style>
+        label {
+            font-weight: 700;
+            font-size: larger;
+        }
+
+        .video_div {
+            margin-top: 1px;
+            background-color: #f0f5fa;
+            /* width: 10remvh; */
+            border: 1px solid #ced4da;
+            border-radius: 10px;
+        }
+
+        .img {
+            margin: auto;
+            display: flex;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 ">
+                    <form action="/video/up" name="video" onsubmit="return validation()" method="POST" enctype="multipart/form-data">
+                        <div>
+                            <label for="title" id="title1">Video Name:</label>
+                            <input type="text" name="vname" id="title" class="form-control">
+                        </div>
+                        <label for="" class="mt-2">Video:</label>
+                        <div class="video_div" id="video">
+                            <img class="img"
+                                src="https://img.icons8.com/ios/250/1FB141/000000/upload-to-cloud--v1.png" />
+                            <input type="file" name="myVideo" style="display: none;"
+                                onchange="return fileShow(this.files)" accept=".flv,.mp4,.3gp" id="file">
+                        </div>
+                        <div id="fileName" class="mt-2">
+
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+        <script>
+            const video_div = document.querySelector('.video_div'), file = document.querySelector('#file');
+            let or_file;
+            video_div.addEventListener("dragover", function (event) {
+                document.getElementById("video").style.border = "1px dashed black"
+            })
+            video_div.addEventListener("dragleave", function (event) {
+                document.getElementById("video").style.border = "1px solid #ced4da"
+            })
+            video_div.addEventListener('click', function () {
+                file.click();
+            })
+            video_div.addEventListener('mouseover', () => {
+                document.getElementById('video').style.cursor = "pointer"
+            })
+            const fileShow = (file) => {
+                if(file=="")
+                {
+                    document.getElementById('fileName').innerHTML=""
+                }else{
+                or_file = file[0]
+                const f_name = document.getElementById('fileName')
+
+                f_name.style.background = "#f0f5fa"
+                f_name.style.borderRadius = "5px"
+                const reader = new FileReader()
+                reader.readAsDataURL(or_file)
+                reader.onload = (e) => {
+                    f_name.innerHTML = `<div class="row"><div class="col-md-6 my-2"><img src="${e.target.result}" style="height:30px; width="30px" class="rounded-pill">${or_file.name}</div> <div class="col-md-6 d-flex justify-content-end my-2" ><button onclick="return clearFileInput()"><i class="fa fa-trash" aria-hidden="true"></i></button></div></div>`
+                }
+                }
+            }
+            function clearFileInput() {
+                const file=document.getElementById('file').value="";
+                fileShow(file)
+            }
+            function validation(){
+                const v1=document.forms['video']['vname'].value
+                const v2=document.forms['video']['myVideo'].value
+                if(v1==""){
+                    alert('Pleas enter video name')
+                    return false;
+                }
+                if(v2==""){
+                    alert('Please select video')
+                    return false;
+                }
+            }
+        </script>
+</body>
+</html>
